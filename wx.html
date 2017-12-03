@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    header{
+        height:45px;
+        background: #fa486c;
+        color:#fff;
+        position: relative;
+        line-height:45px;
+        text-align: center;
+    }
+    header span{
+        font-size: 20px;
+    }
+    header a{
+        position: absolute;
+        left:10px;
+        color:#fff;
+        text-decoration: none;
+    }
+    .wlxx{
+       display:flex;
+        height:100px;
+    }
+    .wl1{
+        flex-grow:2;
+        background: url("img/") no-repeat center;
+        background-size:60px;
+    }
+    .wl2{
+        flex-grow:1;
+        background: url("img/") no-repeat center;
+        background-size:15px;
+    }
+    .hwxx{
+        border-top:1px solid #ddd;
+        border-bottom:1px solid #ddd;
+        padding-top:15px 0px;
+    }
+    .hwxx h1{
+        font-size: 20px;
+        font-weight: normal;
+        border-left:2px solid #fa486c;
+        margin-left:15px;
+        padding-left:10px;
+        margin-bottom:15px;
+    }
+    .hwxx-main{
+        border-top:1px solid #ddd;
+        padding-left:15px;
+    }
+    .hwxx-main p{
+        margin-top:10px;
+    }
+    .hwxx-main p span{
+        color:gray;
+    }
+    .hwxx-main p i{
+        font-style:normal;
+    }
+    .zfxx{
+        margin-top:15px;
+    }
+    .old_price{
+        text-decoration: line-through;
+    }
+    .submit a{
+        display: block;
+        width:80%;
+        margin:0px auto;
+        height:40px;
+        border:2px solid #ddd;
+        border-radius: 20px;
+        text-align: center;
+        line-height:40px;
+        font-size:18px;
+        color:gray;
+        text-decoration: none;
+        margin-top:20px;
+    }
+    .submit a:hover{
+        background: #fa486c;
+        color:#fff;
+        border:2px solid #fa486c;
+    }
+    .tip{
+        padding-left:20px;
+        margin-top: 40px;
+        margin-bottom:70px;
+    }
+    .tip p{
+        font-size:12px;
+    }
+    .tip p:first-child{
+        color:gray;
+    }
+    footer{
+        height:50px;
+        width:100%;
+        border-top:1px solid #ddd;
+        position:fixed;
+        bottom:0px;
+        background: #fff;
+        display:flex;
+    }
+    footer div{flex-grow: 1; color:#fff;}
+    .index{
+        background: url("img/") no-repeat center 5px;
+        background-size:30px;
+        text-align: center;
+        line-height: 80px;
+        transition:1s;
+    }
+    .index:hover{
+        background: url("img/") no-repeat center 5px;
+        background-size:30px;
+        color: #fa486c;
+    }
+</style>
+<body>
+    <header>
+        <a href="#">&lt;返回</a>
+        <span>订单详情</span>
+    </header>
+    <div class="wlxx">
+        <div class="wl1"></div>
+        <div class="wl2"></div>
+        <div class="wl1"></div>
+        <div class="wl2"></div>
+        <div class="wl1"></div>
+        <div class="wl2"></div>
+        <div class="wl1"></div>
+    </div>
+    <div class="hwxx">
+        <h1>货物信息</h1>
+        <div class="hwxx-main">
+            <p><span>商品信息：</span><i>PHP&MYSQL</i></p>
+            <p><span>商品编号：</span><i>PHP&MYSQL</i></p>
+            <p><span>商品价格：</span><i>PHP&MYSQL</i></p>
+            <p><span>收货地址：</span><i>PHP&MYSQL</i></p>
+        </div>
+    </div>
+    <div class="hwxx zfxx">
+        <h1>支付信息</h1>
+        <div class="hwxx-main">
+            <p><span>原价格：</span><i class="old_price">&yen;400</i></p>
+            <p><span>实际价格：</span><i>PHP&MYSQL</i></p>
+            <p><span>支付方式：</span><i>PHP&MYSQL</i></p>
+        </div>
+    </div>
+    <div class="submit">
+        <a href="#">
+            提交订单
+        </a>
+    </div>
+    <div class="tip">
+        <p>温馨提示</p>
+        <p>下单后，请在1小时内完成支付，否则将取消订单。</p>
+    </div>
+    <footer>
+        <div class="index">首页</div>
+        <div class="order">订单</div>
+        <div class="self">我的</div>
+    </footer>
+</body>
+</html>
