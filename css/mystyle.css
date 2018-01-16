@@ -103,7 +103,7 @@ a:link{color:black;}
 a:visited{color: rgb(102,0,166);}
 input:checked+span{background:red;}
 .clear{clear:both; width:0px; height:0px;}
-.aside{
+.left_aside{
     height:600px;
     background-color: coral;
     width:300px;
@@ -113,6 +113,16 @@ input:checked+span{background:red;}
     background-image:url("../img/沙滩.jpg");
     background-attachment:fixed;
 }
+
+.right_aside {
+    height: 100px;
+    background-color: white;
+    width: 300px;
+    position: fixed;
+    top: 25%;
+    right: 100px;
+}
+
 .search_form{
     position: relative;
 }
