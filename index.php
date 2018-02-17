@@ -96,7 +96,7 @@ require_once ('connectvars.php');
 $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 // Retrieve the score data from MySQL
-$query = "SELECT * FROM email_list";
+$query = "SELECT * FROM email_list WHERE approved = 1";
 $data = mysqli_query($dbc, $query);
 
 // Loop through the array of score data, formatting it as HTML

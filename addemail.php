@@ -11,13 +11,15 @@
 
   if (isset($_POST['submit'])) {
     // Grab the reader data from the POST
-      $fist_name = $_POST['first_name'];
+      $fist_name = trim($_POST['first_name']);
       $last_name = $_POST['last_name'];
       $email = $_POST['email'];
       $photo = $_FILES['photo']['name'];
+      $photo_type = $_FILES['photo']['type'];
+      $photo_size = $_FILES['photo']['size'];
 
       if (!empty($fist_name) && !empty($last_name) && !empty($photo)) {
-          if ((($photo_type == 'image/gif') || ($photo_type == 'image/jpeg') || ($photo_type == 'image/pjepg') || ($photo_type == 'image/png')) && ($photo_size > 0) && ($photo_size <= PH_MAXFILESIZE)) {
+          if ((($photo_type == 'image/gif') || ($photo_type == 'image/jpeg') || ($photo_type == 'image/png')) && ($photo_size > 0) && ($photo_size <= PH_MAXFILESIZE)) {
               if ($_FILES['file']['error'] == 0) {
                   // Move the fiel to the target upload folder
                   $target = PH_UPLOADPATH . time() . $photo;
@@ -26,7 +28,7 @@
                       $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
                       // Write the data to the database
-                      $query = "INSERT INTO email_list VALUES ('$firstname', '$lastname', '$email', '$photo')";
+                      $query = "INSERT INTO email_list VALUES ('$firstname', '$lastname', '$email', '$photo', 0)";
                       mysqli_query($dbc, $query)
                       or die('Error quering database.');
 
@@ -48,7 +50,6 @@
           else {
             echo '<p>The photo must be a GIF, JPEG, or PNG image file no greater than ' . (PH_MAXFILESIZE / 1024) . ' KB in size.</p>';
           }
-
           // Try to delete the temporary photo image file
           @unlink($_FILES['photo']['tmp_name']);
       }
