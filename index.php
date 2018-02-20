@@ -119,21 +119,31 @@ mysqli_close($dbc);
 
 ?>
 
+<?php
+  // Generate the navigation menu
+  if (isset($_COOKIE['username'])) {
+      echo '<a href="viewprofile.php">View Profile</a><br />';
+      echo '<a href="logout.php">Log Out (' . $_COOKIE['username'] . ')</a>';
+  }
+  else {
+?>
 <div class="right_aside">
-    <form enctype="multipart/form-data" method="post" action="addemail.php">
-        <input type="hidden" name="MAX_FILE_SIZE" value="32768"/>
-        <label for="photo">选择头像：</label>
-        <input type="file" id="photo" name="photo"/><br/>
-        <label for="firstname">名：</label>
-        <input type="text" id="first_name" name="first_name"/><br/>
-        <label for="lastname">姓：</label>
-        <input type="text" id="last_name" name="last_name"/><br/>
-        <label for="email">你的邮箱地址？</label>
-        <input type="text" id="email" name="email"/><br/>
-        <input type="submit" value="登陆" name="submit"/>
-        <input type="submit" value="注册" name="log"/>
+    <form method="post" action="login.php">
+        <fieldset>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"
+                   value="<?php if (!empty($user_username)) echo $user_username; ?>" /><br/>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"/><br/>
+        </fieldset>
+        <input type="submit" value="Log In" name="submit"/>
+        <a href="signup.php">Sign Up</a>
     </form>
 </div>
+<?php
+  }
+?>
+
 <div class="cont">
     <div class="nav-warp">
         <ul class="nav-list">

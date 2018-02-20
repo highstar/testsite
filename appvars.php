@@ -7,5 +7,5 @@
  */
 // Define the upload path and maximum file size constants
 define('PH_UPLOADPATH', 'img/');
-define('PH_MAXFILESIZE', 655360);
+define('PH_MAXFILESIZE', 6553600);
 ?>
