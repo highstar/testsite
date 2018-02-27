@@ -37,8 +37,8 @@
 
                       if (move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
 
-                          // The username is unique, and the photo is righit, so insert the data into the database
-                          $query = "INSERT INTO user_list (username, password1, join_date, photo) VALUES ('$username', SHA('$password1'), NOW(), '$photo', 0)";
+                          // The username is unique, and the photo is right, so insert the data into the database
+                          $query = "INSERT INTO user_list (username, password1, join_date, photo) VALUES ('$username', SHA('$password1'), NOW(), '$photo')";
 
                           mysqli_query($dbc, $query)
                           or die('Error quering database.');

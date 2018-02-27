@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="keywords" content="程序员|简历|php|后端|前端|html|javascript" charset="UTF-8">
-    <meta name="description" content="程序员|简历|php|后端|前端|html|javascript" charset="UTF-8">
-    <!--<meta http-equiv="refresh" content="3;url=http://www.baidu.com" />-->
-    <meta name="author" content="高星"/>
-    <title>高星的网站</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css"/>
-    <link rel="stylesheet" type="text/css" href="css/media.css"/>
-    <link rel="stylesheet" href="iconfont/iconfont.css"/>
-    <link rel="stylesheet" href="css/animate.css"/>
-    <script defer src="js/myjs.js"></script>
-</head>
+<?php
+  // Start the session
+  require_once ('startsession.php');
+
+  // Insert the page header
+  $page_title = 'Home';
+  require_once ('header.php');
+
+  // Show the navigation menu
+  require_once ('navmenu.php');
+  ?>
 
 <body>
-<div class="header">
-    <img src="img/header.jpg" title="" alt="" height=100px;/>
-    <span>
-            <a href="#" class="animated bounce">黑夜凛冬，code就是龙晶</a>
-        </span>
-    <audio src="res/"></audio>
-</div>
 <div class="left_aside">
     <form action="" class="search_form">
         <input type="search" placeholder="PHP LAMP源码编译安装详解">
@@ -121,51 +109,18 @@ mysqli_close($dbc);
 
 <?php
   // Generate the navigation menu
-  if (isset($_COOKIE['username'])) {
+  if (isset($_SESSION['username'])) {
       echo '<a href="viewprofile.php">View Profile</a><br />';
-      echo '<a href="logout.php">Log Out (' . $_COOKIE['username'] . ')</a>';
+      echo '<a href="logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
   }
   else {
 ?>
-<div class="right_aside">
-    <form method="post" action="login.php">
-        <fieldset>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username"
-                   value="<?php if (!empty($user_username)) echo $user_username; ?>" /><br/>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"/><br/>
-        </fieldset>
-        <input type="submit" value="Log In" name="submit"/>
-        <a href="signup.php">Sign Up</a>
-    </form>
-</div>
+
 <?php
   }
 ?>
 
 <div class="cont">
-    <div class="nav-warp">
-        <ul class="nav-list">
-            <li class="home">
-                <i></i>
-                <a href="#">首页</a>
-            </li>
-            <li class="resume">
-                <a href="#">简历</a>
-            </li>
-            <li class="project">
-                <i></i>
-                <a href="24000tomato.html">项目</a>
-                <div class="project_items">
-                    <a href="#">***买</a>
-                </div>
-            </li>
-            <li class="plan">
-                <a href="table.html">计划</a>
-            </li>
-        </ul>
-    </div>
     <br/>
     <br/>
     <br/>
@@ -295,5 +250,8 @@ mysqli_close($dbc);
 
 </footer>
 
-</body>
-</html>
+<?php
+  // Insert the page footer
+  require_once ('footer.php');
+?>
+
