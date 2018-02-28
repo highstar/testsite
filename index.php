@@ -12,8 +12,8 @@
 
 <body>
 <div class="left_aside">
-    <form action="" class="search_form">
-        <input type="search" placeholder="PHP LAMP源码编译安装详解">
+    <form method="POST" action="search.php" class="search_form">
+        <input type="search" id="search" name="serch" placeholder="PHP LAMP源码编译安装详解">
         <input type="submit">
         <a class="cam" href="#"></a>
     </form>
