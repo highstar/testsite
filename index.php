@@ -75,7 +75,21 @@
     <br/>
 
 </div>
-
+<div class="right_aside">
+    <form method="post" action="login.php">
+        <fieldset>
+            <label for="username">Username or Phone number:</label>
+            <input type="text" id="username" name="username" value=""><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br>
+            <label for="verify">Verification:</label>
+            <input type="text" id="verify" name="verify" value="Enter the pass-phrase" />
+            <img src="captcha.php" alt="Verification pass-phrase" />
+        </fieldset>
+        <input type="submit" value="Log In" name="submit">
+        <a href="signup.php">Sign Up</a>
+    </form>
+</div>
 <?php
 require_once ('appvars.php');
 require_once ('connectvars.php');
@@ -198,25 +212,6 @@ mysqli_close($dbc);
     <br/>
     <br/>
     <br/>
-    <!--<div class="content">-->
-    <!--<div class="left">-->
-    <!--于<time datetime="2017-07-31">7月31</time>看完php_mysql、html视频。-->
-    <!--<hr/>-->
-    <!--<ruby>-->
-    <!--干<rt>gan</rt>-->
-    <!--<rp>该标签无法正常显示</rp>-->
-    <!--</ruby>-->
-    <!--<hr/>-->
-    <!--<details>-->
-    <!--<summary>Show More</summary>-->
-    <!--<img src="img/img.jpg" alt="" title="" />-->
-    <!--<h1>balabala</h1>-->
-    <!--</details>-->
-    <!--<hr/>-->
-    <!--现在是web前端<mark>first step</mark>course-->
-    <!--</div>-->
-    <!--<div class="right"></div>-->
-    <!--</div>-->
     <div class="top_button">
         <a href="#">回到顶部</a>
     </div>

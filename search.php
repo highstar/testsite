@@ -5,19 +5,8 @@
  * Date: 28/02/2018
  * Time: 8:48 PM
  */
-require_once ('connectvars.php');
 
-$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-// Grab the sort setting and search keywords from the URL using GET
-$sort = $_GET['sort'];
-$user_search = $_GET['usersearch'];
-
-// Calculate pagination information
-$cur_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$result_per_page = 5; // number of results per page
-$skip = (($cur_page-1) * $result_per_page);
-
+// This function builds a search query from the search keywords and sort setting
 function build_query($user_search, $sort) {
     $search_query = "SELECT * FROM articals";
 
@@ -71,6 +60,7 @@ function build_query($user_search, $sort) {
     return $search_query;
 }
 
+// This function builds heading links based on the specified sort setting
 function generate_sort_links($user_search, $sort) {
     $sort_links = '';
 
@@ -97,6 +87,65 @@ function generate_sort_links($user_search, $sort) {
     return $sort_links;
 }
 
+// This function builds navigational page links based on the current page and the number of pages
+function generate_page_links($user_search, $sort, $cur_page, $num_pages) {
+    $page_links = '';
+
+    // If this page is not the first page, generate the "previous" link
+
+    if ($cur_page > 1) {
+        $page_links .= '<a href="' . $_SERVER['PHP_SELF'] . '?usersearch=' . $user_search . '&sort' . $sort .
+            '&page=' . ($cur_page - 1) . '"><-</a> ';
+    }
+    else {
+        $page_links .= '<-';
+    }
+
+    // Loop through the pages generating the page number links
+    for ($i = 1; $i <= $num_pages; $i++) {
+        if ($cur_page == $i) {
+            $page_links .= ' ' . $i;
+        }
+        else {
+            $page_links .= '<a href="' . $_SERVER['PHP_SELF'] . '?usersearch=' . $user_search . '&sort' . $sort .
+                '&page=' . $i . '">' . $i . '</a> ';
+        }
+    }
+
+    // If this page is not the last page, generate the "next" link
+    if ($cur_page < $num_pages) {
+        $page_links .= '<a href="' . $_SERVER['PHP_SELF'] . '?usersearch=' . $user_search . '&sort' . $sort .
+            '&page=' . ($cur_page + 1) . '">-></a> ';
+    }
+    else {
+        $page_links .= ' ->';
+    }
+
+    return $page_links;
+}
+
+// Grab the sort setting and search keywords from the URL using GET
+$sort = $_GET['sort'];
+$user_search = $_GET['usersearch'];
+
+// Calculate pagination information
+$cur_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$result_per_page = 5; // number of results per page
+$skip = (($cur_page-1) * $result_per_page);
+
+
+// Start generating the table of results
+echo '<table border="0" cellpadding="2">';
+
+// Generate the search result headings
+echo '<tr class="heading">';
+echo generate_sort_links($user_search,$sort);
+echo '</tr>';
+
+// Connect to the database
+require_once ('connectvars.php');
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
 // Query to get the total results
 $query = build_query($user_search, $sort);
 $result = mysqli_query($dbc, $query);
@@ -106,17 +155,18 @@ $num_pages = ceil($total / $result_per_page);
 // Query again to get just the subset of results
 $query = $query . " LIMIT $skip, $result_per_page";
 $result = mysqli_query($dbc, $query);
-
-echo '<table border="0" cellpadding="2">';
-
-echo '<td>Title</td><td>Content</td><td>Date Posted</td>';
-
 while ($row = mysqli_fetch_array($result)) {
-    echo '<tr class="result">';
+    echo '<tr class="results">';
     echo '<td align="top" width="20%">' . $row['title'] . '</td>';
     echo '<td align="top" width="50%">' . substr($row['content'], 0, 100) . '...</td>';
     echo '<td align="top" width="20%">' . substr($row['date_posted'], 0, 10) . '</td>';
     echo '</tr>';
 }
 echo '</table>';
+
+// Generate navigational page links if we have more than one page
+if ($num_pages > 1) {
+    echo generate_page_links($user_search, $sort, $cur_page, $num_pages);
+}
+mysqli_close($dbc);
 ?>

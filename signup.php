@@ -73,11 +73,11 @@
           mysqli_close($dbc);
     ?>
 
-<p>Please enter your username and desired password to sign up to my site.</p>
+<p>Please enter your username/phone number and desired password to sign up to my site.</p>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
     <fieldset>
         <legend>Registration Info</legend>
-        <label for="username">Username:</label>
+        <label for="username">Username or Phone number or Email:</label>
         <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo $username; ?>" /><br />
         <label for="password1">Password:</label>
         <input type="password" id="password1" name="password1" /><br />
